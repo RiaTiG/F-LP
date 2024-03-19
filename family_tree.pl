@@ -57,7 +57,7 @@ women():- woman(X), print(X), nl, fail.
 %children(+X); Предикат, который выводит всех детей X.
 children(X):- parent(X,Y), print(Y), nl, fail.
 
-%mother(+X,+Y); Предикат, который проверяет, является ли X матерью Y/
+%mother(+X,+Y); Предикат, который проверяет, является ли X матерью Y.
 mother(X,Y):- woman(X), parent(X,Y).
 
 %mother(X); Предикат, который выводит мать X.
@@ -71,7 +71,19 @@ brothers(X) :- man(Y), man(Z), parent(Z,X), parent(Z,Y),Y\=X,print(Y),nl,fail.
 
 % b_s(+X,+Y);Предикат, который проверяет, являются ли X и Y
 % родными братом и сестрой или братьями или сестрами.
-b_s(X,Y):- man(Z), parent(Z,X),parent(Z,Y).
+b_s(X,Y):- man(Z), parent(Z,X), parent(Z,Y).
 
-%b_s(+X); Предикат, который выводит всех братьев или сестер X/
-b_s(X):- b_s(Y,X),X\=Y,print(Y),nl,fail.
+%b_s(+X); Предикат, который выводит всех братьев или сестер X.
+b_s(X):- b_s(Y,X),X\=Y,print(Y), nl, fail.
+
+%daughter(+X,+Y); Предикат, который проверяет, является ли X дочерью Y.
+daughter(X, Y):- parent(Y,X), woman(X).
+
+%daughter(+X); Предикат, который выводит дочь X.
+daughter(X):- daughter(Y,X), print(Y), nl, fail.
+
+%husband(X, Y); Предикат, который проверяет, является ли X мужем Y. 
+husband(X, Y):- man(X), parent(X,Z), parent(Y,Z).
+
+%husband(X); Предикат, который выводит мужа X.
+husband(X):- husband(Y,X), print(Y).
