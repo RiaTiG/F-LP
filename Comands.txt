@@ -1,3 +1,4 @@
 swipl
 consult("family_tree").
 reconsult("family_tree").
+consult("akynator").
