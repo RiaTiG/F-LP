@@ -64,10 +64,10 @@ mother(X,Y):- woman(X), parent(X,Y).
 mother(X):- mother(Y,X), print(Y), nl, fail.
 
 %brother(+X, ?Y); Предикат,который проверяет, является ли X братом Y.
-brother(X,Y):- man(X), parent(Z,X), parent(Z,Y).
+brother(X,Y):- man(X), man(Z), parent(Z,X), parent(Z,Y).
 
 % brothers(+X); Предикат, который выводит всех братьев X.
-brothers(X) :- brother(Y, X), print(Y), nl, fail.
+brothers(X) :- brother(Y, X), X\=Y, print(Y), nl, fail.
 
 % b_s(+X, ?Y);Предикат, который проверяет, являются ли X и Y
 % родными братом и сестрой или братьями или сестрами.
