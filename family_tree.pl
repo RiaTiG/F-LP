@@ -76,13 +76,13 @@ b_s(X,Y):- man(Z), parent(Z,X), parent(Z,Y).
 %b_s(+X); Предикат, который выводит всех братьев или сестер X.
 b_s(X):- b_s(Y,X), X\=Y, print(Y), nl, fail.
 
-%daughter(+X, ?Y); Предикат, который проверяет, является ли X дочерью Y.
+%daughter(?X, +Y); Предикат, который проверяет, является ли X дочерью Y.
 daughter(X, Y):- parent(Y,X), woman(X).
 
 %daughter(+X); Предикат, который выводит дочь X.
 daughter(X):- daughter(Y,X), print(Y), nl, fail.
 
-%husband(+X, ?Y); Предикат, который проверяет, является ли X мужем Y. 
+%husband(?X, +Y); Предикат, который проверяет, является ли X мужем Y. 
 husband(X, Y):- man(X), parent(X,Z), parent(Y,Z).
 
 %husband(+X); Предикат, который выводит мужа X.
