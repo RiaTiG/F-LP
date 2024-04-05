@@ -57,19 +57,19 @@ women():- woman(X), print(X), nl, fail.
 %children(+X); Предикат, который выводит всех детей X.
 children(X):- parent(X,Y), print(Y), nl, fail.
 
-%mother(+X, ?Y); Предикат, который проверяет, является ли X матерью Y.
+%mother(?X, +Y); Предикат, который проверяет, является ли X матерью Y.
 mother(X,Y):- woman(X), parent(X,Y).
 
 %mother(+X); Предикат, который выводит мать X.
 mother(X):- mother(Y,X), print(Y), nl, fail.
 
-%brother(+X, ?Y); Предикат,который проверяет, является ли X братом Y.
+%brother(?X, +Y); Предикат,который проверяет, является ли X братом Y.
 brother(X,Y):- man(X), man(Z), parent(Z,X), parent(Z,Y).
 
 % brothers(+X); Предикат, который выводит всех братьев X.
 brothers(X) :- brother(Y, X), X\=Y, print(Y), nl, fail.
 
-% b_s(+X, ?Y);Предикат, который проверяет, являются ли X и Y
+% b_s(?X, +Y);Предикат, который проверяет, являются ли X и Y
 % родными братом и сестрой или братьями или сестрами.
 b_s(X,Y):- man(Z), parent(Z,X), parent(Z,Y).
 
