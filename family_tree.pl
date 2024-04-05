@@ -94,7 +94,7 @@ grand_da(X, Y):- woman(X), parent(Z,X), parent(Y, Z), X\=Y.
 %grand_dats(+X); Предикат который выводит всех внучек X.
 grand_dats(X):- grand_da(Y, X), print(Y), nl, fail.
 
-%grand_ma_and_da(?X, ?Y); Предикат который проверяет, являются ли X и Y
+%grand_ma_and_da(+X, +Y); Предикат который проверяет, являются ли X и Y
 %бабушкой и внучкой или внучкой и бабушкой.
 grand_ma_and_da(X,Y):- woman(X), grand_da(Y, X), grand_da(X, Y), X\=Y.
 
