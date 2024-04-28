@@ -47,6 +47,33 @@ game(resident_evil):-
     length(L,A),
     A=3,!.
 
+game(outlast):-
+	question(horror),
+    question(story),
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=2,!.
+
+game(dead_by_day_light):-
+    question(horror),
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=1,!.
+
+game(team_fortress):-
+    question(shooter),
+	question(casual),
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=2,!.
+	
+game(doom):-
+    question(shooter),
+    question(platformer),
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=2,!.
+
 game(escape_from_tarkov):-
 	question(shooter),
     question(rpg),
@@ -54,9 +81,22 @@ game(escape_from_tarkov):-
     length(L,A),
     A=2,!.
 
-game(mario):-
-    question(story),
-	question(platformer),
+game(xcom):-
+	question(strategies),
+    question(shooter),
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=2,!.
+
+game(call_of_duty):-
+    question(shooter),
+    bagof(X,asked(X,y),L),
+    length(L,A),
+    A=1,!.
+
+game(donkey_kong):-
+	question(arcade),
+    question(platformer),
     bagof(X,asked(X,y),L),
     length(L,A),
     A=2,!.
@@ -75,32 +115,12 @@ game(diablo):-
     length(L,A),
     A=3,!.
 
-game(donkey_kong):-
-	question(arcade),
-    question(platformer),
-    bagof(X,asked(X,y),L),
-    length(L,A),
-    A=2,!.
-
-game(xcom):-
-	question(strategies),
-    question(shooter),
-    bagof(X,asked(X,y),L),
-    length(L,A),
-    A=2,!.
-
-game(outlast):-
-	question(horror),
+game(mario):-
     question(story),
+	question(platformer),
     bagof(X,asked(X,y),L),
     length(L,A),
     A=2,!.
-
-game(call_of_duty):-
-    question(shooter),
-    bagof(X,asked(X,y),L),
-    length(L,A),
-    A=1,!.
 
 game(undertale):-
 	question(casual),
@@ -108,17 +128,17 @@ game(undertale):-
     bagof(X,asked(X,y),L),
     length(L,A),
     A=2,!.
-		
+
 game(subway_surfers):-
 	question(platformer),
     question(casual),
     bagof(X,asked(X,y),L),
     length(L,A),
     A=2,!.
-	
-game(factorio):-
-	question(simulator),
-    question(strategies),
+
+game(assasins_creed):-
+    question(story),
+    question(platformer),
     bagof(X,asked(X,y),L),
     length(L,A),
     A=2,!.
@@ -129,27 +149,26 @@ game(sims):-
     bagof(X,asked(X,y),L),
     length(L,A),
     A=2,!.
-	
-game(team_fortress):-
-    question(shooter),
-	question(casual),
+
+game(factorio):-
+	question(simulator),
+    question(strategies),
     bagof(X,asked(X,y),L),
     length(L,A),
     A=2,!.
-	
-game(doom):-
-    question(shooter),
-    question(platformer),
+
+game(civilisation):-
+    question(strategies),
     bagof(X,asked(X,y),L),
     length(L,A),
-    A=2,!.
+    A=1,!.
 	
-game(assasins_creed):-
-    question(story),
-    question(platformer),
+game(euro_track):-
+    question(simulator),
     bagof(X,asked(X,y),L),
     length(L,A),
-    A=2,!.
+    A=1,!.
+
 
 game(portal):-
     question(platformer),
@@ -163,23 +182,6 @@ game(baldures_gate):-
     length(L,A),
     A=1,!.
 	
-game(civilisation):-
-    question(strategies),
-    bagof(X,asked(X,y),L),
-    length(L,A),
-    A=1,!.
-	
-game(dead_by_day_light):-
-    question(horror),
-    bagof(X,asked(X,y),L),
-    length(L,A),
-    A=1,!.
-	
-game(euro_track):-
-    question(simulator),
-    bagof(X,asked(X,y),L),
-    length(L,A),
-    A=1,!.
 
 %query(+Prompt)
 query(Prompt) :-
