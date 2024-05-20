@@ -89,6 +89,15 @@ class Kotlin_Lab5_Func {
         }
     }
 
+    //Функция высшего порядка на 1 числовой аргумент
+    fun oneElementOf(x:Int,f:(Int)->Int):Int= f(x)
+
+    //Функция высшего порядка на 2 числовых аргумента
+    fun twoElementOf(x:Int,y:Int,f:(Int,Int)->Int) = f(x,y)
+
+    //Функция высшего порядка на 3 числовых аргумента
+    fun threeElementOf(x:Int,y:Int,z:Int,f:(Int,Int,Int)->Int) = f(x,y,z)
+
     fun main() {
         //val scanner = Scanner(`in`)
         //val x: Int = scanner.nextInt()
