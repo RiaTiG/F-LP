@@ -45,7 +45,7 @@ class Kotlin_Lab5_Func {
     fun kolNum3RecUP(num: Int): Int =
         if (num == 0 ) 0 else if (num < 10 && num < 3) 1 else
             if (num % 10 < 3 ) 1 + kolNum3RecUP(num / 10)
-            else kolNum3RecUP(num)
+            else kolNum3RecUP(num / 10)
 
     //Найти количество делителей числа. Рекурсия вверх
     fun delsNumRecUP(num: Int, divisor: Int = 1): Int {
@@ -101,7 +101,7 @@ class Kotlin_Lab5_Func {
     fun main() {
         //val scanner = Scanner(`in`)
         //val x: Int = scanner.nextInt()
-        println()
+        println(kolNum3RecUP(8712))
     }
 }
 
