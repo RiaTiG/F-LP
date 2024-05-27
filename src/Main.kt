@@ -1,6 +1,16 @@
-
+import io.ktor.application.*
+import io.ktor.features.ContentNegotiation
+import io.ktor.features.StatusPages
+import io.ktor.http.HttpStatusCode
+import io.ktor.request.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import io.ktor.serialization.*
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.File
 
 data class StoreContainer(val Electronic: List<Product>)
@@ -192,13 +202,14 @@ fun main() {
     serializeToJsonFile("tvs.json",tvs)
     serializeToJsonFile("tablets.json",tablets)
 
-    val phone:List<Phone> = deserializeJsonFilePhone("phones.json")
-    val laptop:List<Laptop> = deserializeJsonFileLaptop("laptops.json")
-    val accessory:List<Accessory> = deserializeJsonFileAccess("accessories.json")
-    val tv:List<TV> = deserializeJsonFileTv("tvs.json")
-    val tablet:List<Tablet> = deserializeJsonFileTablet("tablets.json")
+    val phone: List<Phone> = deserializeJsonFilePhone("phones.json")
+    val laptop: List<Laptop> = deserializeJsonFileLaptop("laptops.json")
+    val access: List<Accessory> = deserializeJsonFileAccess("accessories.json")
+    val tv: List<TV> = deserializeJsonFileTv("tvs.json")
+    val tablet: List<Tablet> = deserializeJsonFileTablet("tablets.json")
 
     val query = mutableListOf<String>()
+
     val cheapest= phone.minByOrNull { it.price }
     if (cheapest != null) {
         query.add(cheapest.toString())
@@ -212,7 +223,6 @@ fun main() {
     } else {
         query.add("Список пуст.")
     }
-    println(query)
 
     val minRam = laptop.minByOrNull { it.ram }
     if (minRam != null) {
@@ -221,13 +231,13 @@ fun main() {
         query.add("Список пуст.")
     }
 
-    val expensiveAccessory = accessory.maxByOrNull { it.price }
+    val expensiveAccessory = accessories.maxByOrNull { it.price }
     if (expensiveAccessory != null) {
         query.add(expensiveAccessory.toString())
     } else {
         query.add("Список пуст.")
     }
-    println(query)
+
 
     val biggestStorageTablet = tablet.maxByOrNull { it.storage }
     if (biggestStorageTablet != null) {
@@ -235,5 +245,35 @@ fun main() {
     } else {
         query.add("Список пуст.")
     }
-    println(query)
+
+    //задание 6 и 7 выгрузить отчёты в excel
+    val filePath="result.xlsx"
+
+    val workbook = XSSFWorkbook()
+
+    // Создаем новый лист
+    val sheet = workbook.createSheet("Query Results")
+
+    // Создаем заголовок столбца
+    val headerRow = sheet.createRow(0)
+    val headerCell = headerRow.createCell(0)
+    headerCell.setCellValue("Результаты запросов")
+
+    // Заполняем данные о результатах запросов
+    for ((index, result) in query.withIndex()) {
+        val row = sheet.createRow(index + 1)
+        val cell = row.createCell(0)
+        cell.setCellValue(result)
+    }
+
+    // Автоматически подгоняем ширину столбца по содержимому
+    sheet.autoSizeColumn(0)
+
+    // Сохраняем рабочую книгу в файл
+    val outputStream = File(filePath).outputStream()
+    workbook.write(outputStream)
+    workbook.close()
+
+    println("Результаты запросов сохранены в файл: $filePath")
+
 }
