@@ -203,15 +203,37 @@ fun main() {
     if (cheapest != null) {
         query.add(cheapest.toString())
     } else {
-        query.add("Список сотрудников пуст.")
+        query.add("Список пуст.")
     }
+
     val widest= tv.maxByOrNull { it.screenSize }
     if (widest != null) {
         query.add(widest.toString())
     } else {
-        query.add("Список сотрудников пуст.")
+        query.add("Список пуст.")
     }
     println(query)
 
+    val minRam = laptop.minByOrNull { it.ram }
+    if (minRam != null) {
+        query.add(minRam.toString())
+    } else {
+        query.add("Список пуст.")
+    }
 
+    val expensiveAccessory = accessory.maxByOrNull { it.price }
+    if (expensiveAccessory != null) {
+        query.add(expensiveAccessory.toString())
+    } else {
+        query.add("Список пуст.")
+    }
+    println(query)
+
+    val biggestStorageTablet = tablet.maxByOrNull { it.storage }
+    if (biggestStorageTablet != null) {
+        query.add(biggestStorageTablet.toString())
+    } else {
+        query.add("Список пуст.")
+    }
+    println(query)
 }
