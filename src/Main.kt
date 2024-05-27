@@ -187,7 +187,11 @@ fun main() {
     serializeToJsonFile("tvs.json",tvs)
     serializeToJsonFile("tablets.json",tablets)
 
-
+    deserializeJsonFilePhone("phones.json")
+    deserializeJsonFileLaptop("laptops.json")
+    deserializeJsonFileAccess("accessories.json")
+    deserializeJsonFileTv("tvs.json")
+    deserializeJsonFileTablet("tablets.json")
 
 
 }
