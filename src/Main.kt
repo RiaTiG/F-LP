@@ -101,45 +101,50 @@ fun <Any> serializeToJsonFile(fileName: String, items: List<Any>) {
     File(fileName).writeText(json)
 }
 //Функция для десериализациия объектов
-fun deserializeJsonFilePhone(filePath: String) {
+fun deserializeJsonFilePhone(filePath: String):List<Phone> {
     val jsonString = File(filePath).readText()
     val listType = object : TypeToken<List<Phone>>() {}.type
     val items: List<Phone> = Gson().fromJson(jsonString, listType)
     println("Десериализованный список объектов:")
     for (item in items) {
         println(item.toString())}
+    return items
 }
-fun deserializeJsonFileLaptop(filePath: String) {
+fun deserializeJsonFileLaptop(filePath: String):List<Laptop> {
     val jsonString = File(filePath).readText()
     val listType = object : TypeToken<List<Laptop>>() {}.type
     val items: List<Laptop> = Gson().fromJson(jsonString, listType)
     println("Десериализованный список объектов:")
     for (item in items) {
         println(item.toString())}
+    return items
 }
-fun deserializeJsonFileAccess(filePath: String) {
+fun deserializeJsonFileAccess(filePath: String):List<Accessory> {
     val jsonString = File(filePath).readText()
     val listType = object : TypeToken<List<Accessory>>() {}.type
     val items: List<Accessory> = Gson().fromJson(jsonString, listType)
     println("Десериализованный список объектов:")
     for (item in items) {
         println(item.toString())}
+    return items
 }
-fun deserializeJsonFileTv(filePath: String) {
+fun deserializeJsonFileTv(filePath: String):List<TV> {
     val jsonString = File(filePath).readText()
     val listType = object : TypeToken<List<TV>>() {}.type
     val items: List<TV> = Gson().fromJson(jsonString, listType)
     println("Десериализованный список объектов:")
     for (item in items) {
         println(item.toString())}
+    return items
 }
-fun deserializeJsonFileTablet(filePath: String) {
+fun deserializeJsonFileTablet(filePath: String):List<Tablet> {
     val jsonString = File(filePath).readText()
     val listType = object : TypeToken<List<Tablet>>() {}.type
     val items: List<Tablet> = Gson().fromJson(jsonString, listType)
     println("Десериализованный список объектов:")
     for (item in items) {
         println(item.toString())}
+    return items
 }
 // Пример использования классов
 fun main() {
@@ -187,11 +192,26 @@ fun main() {
     serializeToJsonFile("tvs.json",tvs)
     serializeToJsonFile("tablets.json",tablets)
 
-    deserializeJsonFilePhone("phones.json")
-    deserializeJsonFileLaptop("laptops.json")
-    deserializeJsonFileAccess("accessories.json")
-    deserializeJsonFileTv("tvs.json")
-    deserializeJsonFileTablet("tablets.json")
+    val phone:List<Phone> = deserializeJsonFilePhone("phones.json")
+    val laptop:List<Laptop> = deserializeJsonFileLaptop("laptops.json")
+    val accessory:List<Accessory> = deserializeJsonFileAccess("accessories.json")
+    val tv:List<TV> = deserializeJsonFileTv("tvs.json")
+    val tablet:List<Tablet> = deserializeJsonFileTablet("tablets.json")
+
+    val query = mutableListOf<String>()
+    val cheapest= phone.minByOrNull { it.price }
+    if (cheapest != null) {
+        query.add(cheapest.toString())
+    } else {
+        query.add("Список сотрудников пуст.")
+    }
+    val widest= tv.maxByOrNull { it.screenSize }
+    if (widest != null) {
+        query.add(widest.toString())
+    } else {
+        query.add("Список сотрудников пуст.")
+    }
+    println(query)
 
 
 }
